@@ -23,7 +23,6 @@ public class AddressBookService implements IAddressBookService{
     @Override
     public List<AddressBookData> getContact() {
         return addressbookRepository.findAll();
-        //return addressBookDataList;
     }
 
     @Override
@@ -39,28 +38,14 @@ public class AddressBookService implements IAddressBookService{
         }else {
             throw new AddressBookExecption("User not found" + name);
         }
-        /*for (AddressBookData addressBookData : addressBookDataList) {
-            if (addressBookData.getName().equals(name)){
-                return addressBookData;
-            }
-        }
-        return null;*/
     }
 
     @Override
     public AddressBookData createContact(AddressBookDTO addressBookDTO) {
-        /*AddressBookData addressBookData = new AddressBookData(addressBookDTO);
-        log.debug("AddressbookData: " + addressBookData.toString());
-        return addressbookRepository.save(addressBookData);*/
-
         AddressBookData addressBook = AddressBookData.
                 Build(0,addressBookDTO.getName(), addressBookDTO.getAddress(), addressBookDTO.getCity(), addressBookDTO.state,
                         addressBookDTO.getPinCode(), addressBookDTO.getMobileNumber(), addressBookDTO.getEmail());
         return addressbookRepository.save(addressBook);
-
-        /*AddressBookData addressBookData = new AddressBookData(name, addressBookDTO);
-        addressBookDataList.add(addressBookData);
-        return addressBookData;*/
     }
 
     @Override
@@ -84,29 +69,11 @@ public class AddressBookService implements IAddressBookService{
             }
         }
         return null;
-
-        /*AddressBookData addressbookData = this.getContactByName(name);
-        addressbookData.updateAddressBookData(addressBookDTO);
-        return addressbookRepository.save(addressbookData);*/
-
-        /*for (AddressBookData addressBookData : addressBookDataList) {
-            if (addressBookData.getName().equals(name)){
-                addressBookData.setAddress(addressBookDTO.address);
-                addressBookData.setCity(addressBookDTO.city);
-                addressBookData.setState(addressBookDTO.state);
-                addressBookData.setPinCode(addressBookDTO.pinCode);
-                addressBookData.setMobileNumber(addressBookDTO.mobileNumber);
-                addressBookData.setEmail(addressBookDTO.email);
-                return addressbookRepository.save(addressBookData);
-            }
-        }
-        return null;*/
     }
 
     @Override
     public void deleteContact(String name) {
         AddressBookData addressBookData = this.getContactByName(name);
         addressbookRepository.delete(addressBookData);
-        //addressBookDataList.remove(addressBookData);
     }
 }
