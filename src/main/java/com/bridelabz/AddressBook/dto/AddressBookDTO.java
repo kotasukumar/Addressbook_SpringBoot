@@ -1,19 +1,30 @@
 package com.bridelabz.AddressBook.dto;
 
-public class AddressBookDTO {
-    public String address;
-    public String city;
-    public String state;
-    public long pinCode;
-    public long mobileNumber;
-    public String email;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-    public AddressBookDTO(String address, String city, String state, long pinCode, long mobileNumber, String email) {
-        this.address = address;
-        this.city = city;
-        this.state = state;
-        this.pinCode = pinCode;
-        this.mobileNumber = mobileNumber;
-        this.email = email;
-    }
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class AddressBookDTO {
+
+    @NotNull(message = "User name should not null")
+    @NotBlank
+    public String name;
+    @NotNull(message = "address should not null")
+    public String address;
+    @NotNull(message = "city name should not null")
+    public String city;
+    @NotNull(message = "state should not null")
+    public String state;
+    @NotNull(message = "pin code should not null")
+    public String pinCode;
+    @NotNull(message = "mobile number should not null")
+    public String mobileNumber;
+    @NotNull(message = "User name should not null")
+    public String email;
 }

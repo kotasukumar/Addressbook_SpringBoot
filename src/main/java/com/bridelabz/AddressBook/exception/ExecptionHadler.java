@@ -17,13 +17,13 @@ public class ExecptionHadler {
     public ResponseEntity<ReasponseDTO> handleMethodArgumentNotValidException(MethodArgumentNotValidException exception) {
         List<ObjectError> errorList = exception.getBindingResult().getAllErrors();
         List<String> errMesg = errorList.stream().map(objectError -> objectError.getDefaultMessage()).collect(Collectors.toList());
-        ReasponseDTO responseDTO = new ReasponseDTO("Exception While processing REST Request", errMesg);
+        ReasponseDTO responseDTO = ReasponseDTO.Build("Exception While processing REST Request", errMesg);
         return new ResponseEntity<>(responseDTO, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(AddressBookExecption.class)
     public ResponseEntity<ReasponseDTO> handleMethodAddressbookException(AddressBookExecption exception){
-        ReasponseDTO responseDTO = new ReasponseDTO("Exception While processing REST Request",exception.getMessage());
+        ReasponseDTO responseDTO = ReasponseDTO.Build("Exception While processing REST Request",exception.getMessage());
         return new ResponseEntity<>(responseDTO,HttpStatus.BAD_REQUEST);
     }
 }

@@ -4,7 +4,6 @@ import com.bridelabz.AddressBook.dto.AddressBookDTO;
 import com.bridelabz.AddressBook.model.AddressBookData;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface IAddressBookService {
 
@@ -12,9 +11,13 @@ public interface IAddressBookService {
 
     AddressBookData getContactByName(String name);
 
-    AddressBookData createContact(String name, AddressBookDTO addressBookDTO);
+    AddressBookData getContactById(int id);
 
-    AddressBookData updateContact(String name, AddressBookDTO addressBookDTO);
+    AddressBookData createContact(AddressBookDTO addressBookDTO);
+
+    AddressBookData updateContact(int id, AddressBookDTO addressBookDTO);
 
     void deleteContact(String name);
+
+    List<AddressBookData> getAddresses();
 }

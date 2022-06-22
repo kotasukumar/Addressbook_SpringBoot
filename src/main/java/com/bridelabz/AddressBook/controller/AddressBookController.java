@@ -22,35 +22,35 @@ public class AddressBookController {
     @RequestMapping(value = {"", "/", "/home"})
     public ResponseEntity<ReasponseDTO> getContacts(){
         List<AddressBookData> addressBookData = iAddressBookService.getContact();
-        ReasponseDTO reasponseDTO = new ReasponseDTO("Get call success", addressBookData);
+        ReasponseDTO reasponseDTO = ReasponseDTO.Build("Get call success", addressBookData);
         return new ResponseEntity<ReasponseDTO>(reasponseDTO, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/get/{name}")
-    public ResponseEntity<ReasponseDTO> getContactByName(@PathVariable("name") String name){
-        AddressBookData addressBookData = iAddressBookService.getContactByName(name);
-        ReasponseDTO reasponseDTO = new ReasponseDTO("Get function success", addressBookData);
+    @GetMapping(value = "/get/{id}")
+    public ResponseEntity<ReasponseDTO> getContactByName(@PathVariable("id") int id){
+        AddressBookData addressBookData = iAddressBookService.getContactById(id);
+        ReasponseDTO reasponseDTO = ReasponseDTO.Build("Get function success", addressBookData);
         return new ResponseEntity<ReasponseDTO>(reasponseDTO, HttpStatus.OK);
     }
 
-    @PostMapping(value = "/create/{name}")
-    public ResponseEntity<ReasponseDTO> createContact(@PathVariable("name")String name, @RequestBody @Valid AddressBookDTO addressBookDTO){
-        AddressBookData addressBookData = iAddressBookService.createContact(name, addressBookDTO);
-        ReasponseDTO reasponseDTO = new ReasponseDTO("Created successfully", addressBookData);
+    @PostMapping(value = "/create")
+    public ResponseEntity<ReasponseDTO> createContact(@RequestBody @Valid AddressBookDTO addressBookDTO){
+        AddressBookData addressBookData = iAddressBookService.createContact(addressBookDTO);
+        ReasponseDTO reasponseDTO = ReasponseDTO.Build("Created successfully", addressBookData);
         return new ResponseEntity<ReasponseDTO>(reasponseDTO, HttpStatus.OK);
     }
 
-    @PutMapping("/put/{name}")
-    public ResponseEntity<ReasponseDTO> updateContact(@PathVariable("name") String name, @RequestBody @Valid AddressBookDTO addressBookDTO){
-        AddressBookData addressBookData = iAddressBookService.updateContact(name, addressBookDTO);
-        ReasponseDTO reasponseDTO  = new ReasponseDTO("Updated successfully", addressBookData);
+    @PutMapping("/put/{id}")
+    public ResponseEntity<ReasponseDTO> updateContact(@PathVariable("id") int id, @RequestBody @Valid AddressBookDTO addressBookDTO){
+        AddressBookData addressBookData = iAddressBookService.updateContact(id, addressBookDTO);
+        ReasponseDTO reasponseDTO  = ReasponseDTO.Build("Updated successfully", addressBookData);
         return new ResponseEntity<ReasponseDTO>(reasponseDTO, HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{name}")
     public ResponseEntity<ReasponseDTO> deleteContact(@PathVariable("name")String name){
         iAddressBookService.deleteContact(name);
-        ReasponseDTO reasponseDTO = new ReasponseDTO("deleted successfully", name);
+        ReasponseDTO reasponseDTO = ReasponseDTO.Build("deleted successfully", name);
         return new ResponseEntity<ReasponseDTO>(reasponseDTO, HttpStatus.OK);
     }
 }
