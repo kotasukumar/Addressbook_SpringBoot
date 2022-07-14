@@ -44,7 +44,7 @@ public class AddressBookService implements IAddressBookService{
     public AddressBookData createContact(AddressBookDTO addressBookDTO) {
         AddressBookData addressBook = AddressBookData.
                 Build(0,addressBookDTO.getName(), addressBookDTO.getAddress(), addressBookDTO.getCity(), addressBookDTO.state,
-                        addressBookDTO.getPinCode(), addressBookDTO.getMobileNumber(), addressBookDTO.getEmail());
+                        addressBookDTO.getZip(), addressBookDTO.getContact());
         return addressbookRepository.save(addressBook);
     }
 
@@ -59,9 +59,9 @@ public class AddressBookService implements IAddressBookService{
         for (AddressBookData addressBook : dataList ) {
             if(addressBook.getId() == id) {
                 addressBook.setName(addressBookDTO.getName());
-                addressBook.setMobileNumber(addressBookDTO.getMobileNumber());
-                addressBook.setEmail(addressBookDTO.getEmail());
-                addressBook.setPinCode(addressBookDTO.getPinCode());
+                addressBook.setMobileNumber(addressBookDTO.getContact());
+                //addressBook.setEmail(addressBookDTO.getEmail());
+                addressBook.setPinCode(addressBookDTO.getZip());
                 addressBook.setAddress(addressBookDTO.getAddress());
                 addressBook.setState(addressBookDTO.getState());
                 addressBook.setCity(addressBookDTO.getCity());
@@ -72,8 +72,8 @@ public class AddressBookService implements IAddressBookService{
     }
 
     @Override
-    public void deleteContact(String name) {
-        AddressBookData addressBookData = this.getContactByName(name);
+    public void deleteContact(int id) {
+        AddressBookData addressBookData = this.getContactById(id);
         addressbookRepository.delete(addressBookData);
     }
 }

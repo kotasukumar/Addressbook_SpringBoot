@@ -24,5 +24,5 @@ public class AddressBookData {
     private String state;
     private String pinCode;
     private String mobileNumber;
-    private String email;
+    //private String email;
 }

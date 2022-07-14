@@ -13,13 +13,14 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
+@CrossOrigin(allowedHeaders = "*", origins = "*")
 @RequestMapping("/addressbook")
 public class AddressBookController {
 
     @Autowired
     private IAddressBookService iAddressBookService;
 
-    @RequestMapping(value = {"", "/", "/home"})
+    @GetMapping(value = { "/get-all"})
     public ResponseEntity<ReasponseDTO> getContacts(){
         List<AddressBookData> addressBookData = iAddressBookService.getContact();
         ReasponseDTO reasponseDTO = ReasponseDTO.Build("Get call success", addressBookData);
@@ -47,10 +48,10 @@ public class AddressBookController {
         return new ResponseEntity<ReasponseDTO>(reasponseDTO, HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{name}")
-    public ResponseEntity<ReasponseDTO> deleteContact(@PathVariable("name")String name){
-        iAddressBookService.deleteContact(name);
-        ReasponseDTO reasponseDTO = ReasponseDTO.Build("deleted successfully", name);
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<ReasponseDTO> deleteContact(@PathVariable("id")int id){
+        iAddressBookService.deleteContact(id);
+        ReasponseDTO reasponseDTO = ReasponseDTO.Build("deleted successfully", id);
         return new ResponseEntity<ReasponseDTO>(reasponseDTO, HttpStatus.OK);
     }
 }

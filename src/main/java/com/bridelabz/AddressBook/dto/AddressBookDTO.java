@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Data
@@ -12,8 +11,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 public class AddressBookDTO {
 
-    @NotNull(message = "User name should not null")
-    @NotBlank
+    @NotNull(message = "name should not null")
     public String name;
 
     @NotNull(message = "address should not null")
@@ -26,11 +24,11 @@ public class AddressBookDTO {
     public String state;
 
     @NotNull(message = "pin code should not null")
-    public String pinCode;
+    public String zip;
 
     @NotNull(message = "mobile number should not null")
-    public String mobileNumber;
+    public String contact;
 
-    @NotNull(message = "User name should not null")
-    public String email;
+    /*@NotNull(message = "User name should not null")
+    public String email;*/
 }
