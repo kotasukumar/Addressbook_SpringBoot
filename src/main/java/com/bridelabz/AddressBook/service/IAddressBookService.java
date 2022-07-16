@@ -21,4 +21,6 @@ public interface IAddressBookService {
     void deleteContact(int id);
 
     List<AddressBookData> getAddresses();
+
+    List<AddressBookData> sortAddressBy(String field);
 }

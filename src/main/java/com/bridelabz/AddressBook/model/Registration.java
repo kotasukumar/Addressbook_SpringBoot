@@ -1,25 +1,24 @@
 package com.bridelabz.AddressBook.model;
 
-import com.bridelabz.AddressBook.dto.AddressBookDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Data
-@Entity
-@AllArgsConstructor(staticName = "Build")
+@AllArgsConstructor(staticName = "Built")
 @NoArgsConstructor
-public class AddressBookData {
+@Entity
+@Table(name = "Registration")
+public class Registration {
+
     @Id
     @GeneratedValue
     private int id;
-    private String name;
-    private String address;
-    private String city;
-    private String state;
-    private String pinCode;
-    private String mobileNumber;
+    private String userName;
+    private String emailID;
+    private String password;
 }

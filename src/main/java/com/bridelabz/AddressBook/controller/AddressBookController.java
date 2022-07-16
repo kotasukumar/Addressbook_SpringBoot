@@ -54,4 +54,11 @@ public class AddressBookController {
         ReasponseDTO reasponseDTO = ReasponseDTO.Build("deleted successfully", id);
         return new ResponseEntity<ReasponseDTO>(reasponseDTO, HttpStatus.OK);
     }
+
+    @GetMapping("/shortby/{field}")
+    public  ResponseEntity<ReasponseDTO> shortBy(@PathVariable ("field") String field){
+        ReasponseDTO reasponseDTO = ReasponseDTO.Build("short call success", iAddressBookService.sortAddressBy(field));
+        return  new ResponseEntity<>(reasponseDTO, HttpStatus.OK);
+    }
+
 }

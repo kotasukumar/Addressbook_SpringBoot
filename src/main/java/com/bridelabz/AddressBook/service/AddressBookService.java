@@ -6,6 +6,7 @@ import com.bridelabz.AddressBook.model.AddressBookData;
 import com.bridelabz.AddressBook.repository.AddressbookRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,8 +18,6 @@ public class AddressBookService implements IAddressBookService{
 
     @Autowired
     private AddressbookRepository addressbookRepository;
-
-    List<AddressBookData> addressBookDataList = new ArrayList<>();
 
     @Override
     public List<AddressBookData> getContact() {
@@ -51,6 +50,11 @@ public class AddressBookService implements IAddressBookService{
     @Override
     public List<AddressBookData> getAddresses() {
         return addressbookRepository.findAll();
+    }
+
+    @Override
+    public List<AddressBookData> sortAddressBy(String field) {
+        return addressbookRepository.findAll(Sort.by(field));
     }
 
     @Override
